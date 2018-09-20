@@ -1,29 +1,23 @@
-// 0.Secci贸n de documentaci贸n 
-// main.c
-// Dispositivo: PIC16F18877
-// Pr谩ctica 1.1 
-// Autores: Jesus Tirado Serrato
-//           Heriberto Sandoval Perez
-//           Guillermo Jvier Crbajal Gardu帽o
-// Fecha: Agosto 27, 2018
+/*
+ * File:   main.c
+ * Authores: Jesus Tirado Serrato
+ *           Heriberto Sandoval Perez
+ *           Guillermo Javier Carbajal Gardu駉
+ * Created on 30 de agosto de 2018, 02:08 PM
+ */
 
-// I/O List
-//Inputs************************************************************************
 
-//Outputs***********************************************************************
-// LED en RB0
-
-// 1. Secci贸n Directivas pre-proceso
-// Incluir librer铆as
-#include <xc.h>  //Esta es la librer铆a principal del compilador
+// 1. Secci髇 Directivas pre-proceso
+// Incluir librer韆s
+#include <xc.h>  //Esta es la librer韆 principal del compilador
 //en ella se encuentran todas las definiciones para el microcontrolador utilizado
-#include "Libreria.h"
+#include "config.h"
 // Definiciones
-#define _XTAL_FREQ 32000000
+#define _XTAL_FREQ 32000000   //es para retardos
 // Macros
 
 
-// 2. Secci贸n de declaraciones
+// 2. Secci髇 de declaraciones
 //   Variables Globales
 
 
@@ -31,25 +25,29 @@
 
 
 
-// 3. Secci贸n de subrutinas
+// 3. Secci髇 de subrutinas
 // MAIN: obligatorio para un programa en C
 void main(void) {
-    
-    //Configuraci贸n del Oscilador
+    //Configuraci髇 del Oscilador
     //OSCCON1bits.NOSC=0b110;
     // OSCCON1bits.NDIV=0b000;
-    OSCFRQbits.HFFRQ=0b101; //Selecciona la frecuencia de 16MHz del INTOSC
-    //Configuraci贸n de puertos
-    PORTB=0;    //Limpia puerto B
-    TRISB=0;    //Puerto B como salidas
-    ANSELB=0;   //Puerto B como digital
+    //OSCFRQbits.HFFRQ=0b110; //Selecciona la frecuencia de 32MHz del INTOSC
+    //Configuraci髇 de puertos
+  //  PORTA=0;    //Limpia el puerto A
+    PORTC=0;    //Limpia puerto 
+  //  ANSELA =0;    //Declaro como 
+    ANSELC=0;
+   // TRISA=1;    //Puerto A como entrada
+    TRISC=0;    //Puerto B como salidas
+   // WPUA0=1;
  
 //4. Inicia ciclo infinito
     while(1){
-        LATBbits.LATB7=~LATBbits.LATB7;  //Toggle bits RB0
-        __delay_ms(1000);                //Espera 1 segundo
+        LATCbits.LATC1=~LATCbits.LATC1 +1;  //Toggle bits RB0
+        __delay_ms(500);                //Espera 1 segundo 
     }
     return;
 }
-
+//for(;;){
+//}
 // Subrutinas
